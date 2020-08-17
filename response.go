@@ -105,6 +105,11 @@ func (c *Response) IsComplete() bool {
 	}
 }
 
+// GetChecksum ...
+func (c *Response) GetChecksum() []byte {
+	return c.Request.checksum
+}
+
 // Cancel cancels the file transfer by canceling the underlying Context for
 // this Response. Cancel blocks until the transfer is closed and returns any
 // error - typically context.Canceled.

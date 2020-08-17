@@ -2,6 +2,7 @@ package grab
 
 import (
 	"context"
+	"crypto/sha256"
 	"hash"
 	"net/http"
 	"net/url"
@@ -174,4 +175,9 @@ func (r *Request) SetChecksum(h hash.Hash, sum []byte, deleteOnError bool) {
 	r.hash = h
 	r.checksum = sum
 	r.deleteOnError = deleteOnError
+}
+
+// Cal256Local instruct to calculate sha256 hash for file
+func (r *Request) Cal256Local() {
+	r.SetChecksum(sha256.New(), nil, false)
 }

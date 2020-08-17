@@ -300,6 +300,10 @@ func (c *Client) checksumFile(resp *Response) stateFunc {
 		return c.closeResponse
 	}
 
+	if req.checksum == nil {
+		req.checksum = sum
+		return c.closeResponse
+	}
 	// compare checksum
 	if !bytes.Equal(sum, req.checksum) {
 		resp.err = ErrBadChecksum
